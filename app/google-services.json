@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "791719941767",
+    "project_id": "hosco-259dc",
+    "storage_bucket": "hosco-259dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791719941767:android:6b37bd7c7fc90d205e4a22",
+        "android_client_info": {
+          "package_name": "com.hosco.nextcrm.callcenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791719941767-hr42mrbj1662p52pn1qc79jvpppt3li4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hosco.nextcrm.callcenter",
+            "certificate_hash": "b3cc285556f6003a773e556e47c859222b32ab31"
+          }
+        },
+        {
+          "client_id": "791719941767-209h9i7490goei2elahcnt4du3158tbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd2e2SYQmJ4oBwhT77Wzw2LKhjdHV0M4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791719941767-209h9i7490goei2elahcnt4du3158tbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

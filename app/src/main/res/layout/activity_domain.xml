@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_domain"
+    tools:context=".ui.login.DomainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen200"
+            android:layout_height="@dimen/dimen60"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dimen50"
+            android:layout_marginBottom="@dimen/dimen100"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_login_layout"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dimen16"
+            android:paddingTop="@dimen/dimen40"
+            android:paddingBottom="@dimen/dimen16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen4"
+                android:layout_marginBottom="@dimen/dimen36"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:paddingLeft="@dimen/dimen8"
+                android:text="@string/txt_domain"
+                android:textColor="@color/gray2"
+                android:textSize="@dimen/sp15" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edDomain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/tvDomain"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="@font/sfprodisplay_medium"
+                    android:hint="@string/txt_domain"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingHorizontal="@dimen/dimen8"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp17" />
+
+                <TextView
+                    android:id="@+id/tvDomain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/edDomain"
+                    android:layout_alignBottom="@+id/edDomain"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/dimen5"
+                    android:background="@drawable/bg_domain_text"
+                    android:fontFamily="@font/sfprodisplay_medium"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/dimen6"
+                    android:text="@string/txt_domain_hosco"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp17" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen1"
+                    android:layout_below="@+id/edDomain"
+                    android:background="@color/colorApp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/btnContinueDomain"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen46"
+                android:layout_marginTop="@dimen/dimen28"
+                android:background="@drawable/bg_login_button"
+                android:clickable="true"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="center"
+                android:text="@string/txt_continue"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp17" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

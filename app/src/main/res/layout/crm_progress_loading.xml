@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen10">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_progress"
+        android:gravity="center_vertical"
+        android:minWidth="@dimen/dimen300"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingHorizontal="@dimen/dimen20"
+        android:paddingVertical="@dimen/dimen20">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dimen10"
+            android:layout_marginLeft="@dimen/dimen6"
+            android:layout_marginRight="@dimen/dimen10"
+            android:indeterminateDrawable="@drawable/crm_progress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/txt_loading"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

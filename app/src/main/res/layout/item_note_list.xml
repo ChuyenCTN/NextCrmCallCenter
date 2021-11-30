@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="noteModel"
+            type="com.hosco.nextcrm.callcenter.model.response.NoteResponse" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/dimen4"
+        android:paddingTop="@dimen/dimen8"
+        android:paddingBottom="@dimen/dimen2">
+
+        <TextView
+            android:id="@+id/tvFirstNameItemNote"
+            android:layout_width="@dimen/dimen50"
+            android:layout_height="@dimen/dimen50"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen10"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp20"
+            app:textFirst="@{noteModel.subject}" />
+
+        <TextView
+            android:id="@+id/layoutSubjectItemNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ratingItemNote"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:paddingRight="@dimen/dimen8"
+            android:text="@{noteModel.subject}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp17" />
+
+        <TextView
+            android:id="@+id/tvAsignItemNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutSubjectItemNote"
+            android:layout_marginTop="@dimen/dimen6"
+            android:layout_toLeftOf="@+id/tvTimeItemNote"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:paddingRight="@dimen/dimen8"
+            android:text="@{noteModel.assigned.firstname+' '+noteModel.assigned.lastname}"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp14" />
+
+        <RatingBar
+            android:id="@+id/ratingItemNote"
+            style="?attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/layoutSubjectItemNote"
+            android:layout_alignParentRight="true"
+            android:numStars="5"
+            android:progressTint="@color/yeallow_dark"
+            android:rating="3" />
+
+        <TextView
+            android:id="@+id/tvStateItemNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvAsignItemNote"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_processing"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/dimen6"
+            android:paddingBottom="@dimen/dimen2"
+            android:text="@{noteModel.statusStatesInfo.code}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp11" />
+
+        <TextView
+            android:id="@+id/tvTimeItemNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvAsignItemNote"
+            android:layout_marginTop="@dimen/dimen6"
+            android:layout_marginRight="@dimen/dimen6"
+            android:layout_toLeftOf="@+id/tvStateItemNote"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:text="@{noteModel.createdAt}"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp13" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen1"
+            android:layout_below="@+id/tvFirstNameItemNote"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:background="@color/gray_line" />
+    </RelativeLayout>
+
+</layout>

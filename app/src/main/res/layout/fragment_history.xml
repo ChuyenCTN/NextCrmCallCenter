@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="historyViewModel"
+            type="com.hosco.nextcrm.callcenter.ui.history.HistoryViewModel" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/toolBarNote"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/bg_toolbar">
+
+            <TextView
+                android:id="@+id/tvDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_press_icon_toolbar"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="@dimen/dimen10"
+                android:text="@string/txt_delete"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvDone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_press_icon_toolbar"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="@dimen/dimen10"
+                android:text="@string/txt_done"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/tvDone"
+                android:layout_toRightOf="@+id/tvDelete"
+                android:ellipsize="end"
+                android:fontFamily="@font/sfprodisplay_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="@dimen/dimen4"
+                android:text="@string/menu_history"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18" />
+
+        </RelativeLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolBarNote">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/dimen8" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/loadmoreHistory"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sp40"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_loading_more"
+            android:indeterminateDrawable="@drawable/crm_progress"
+            android:paddingVertical="@dimen/dimen6"
+            android:visibility="gone" />
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.contact.ContactFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tabContact"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_tool_tab_bar" />
+
+        <RelativeLayout
+            android:id="@+id/toolBarNote"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:fontFamily="@font/sfprodisplay_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="@dimen/dimen4"
+                android:text="@string/menu_contact"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_press_icon_toolbar"
+                android:clickable="true"
+                android:maxWidth="@dimen/dimen30"
+                android:padding="@dimen/dimen16"
+                android:src="@drawable/ic_baseline_filter_alt"
+                android:visibility="gone" />
+
+
+            <ImageView
+                android:id="@+id/imgAddContact"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_press_icon_toolbar"
+                android:clickable="true"
+                android:maxWidth="@dimen/dimen30"
+                android:padding="@dimen/dimen16"
+                android:src="@drawable/ic_baseline_add"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabContact"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen40"
+            android:layout_below="@+id/toolBarNote"
+            android:background="@color/transparent"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/MineCustomTabText"
+            app:tabTextColor="@color/gray_line" />
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

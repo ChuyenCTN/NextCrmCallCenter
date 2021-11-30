@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_numpad"
+    android:minHeight="@dimen/dimen400"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <EditText
+                android:id="@+id/edValueDialpad"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:backgroundTint="@android:color/transparent"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/dimen16"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp36">
+
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/btnBackspase"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:background="@drawable/ripple_numpad"
+                android:src="@drawable/ic_baseline_backspace">
+
+            </ImageButton>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="1"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="2"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="3"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="4"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="5"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="6"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="7"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="8"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="9"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnstar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="*"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="0"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+            <Button
+                android:id="@+id/btnhash"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dimen20"
+                android:layout_weight="1"
+                android:background="@drawable/ripple_numpad"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="#"
+                android:textColor="@color/color_numpad"
+                android:textSize="@dimen/sp36">
+
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

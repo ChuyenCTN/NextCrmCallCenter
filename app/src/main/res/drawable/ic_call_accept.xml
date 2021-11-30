@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ripple_foreground">
+    <item android:id="@+id/shortcut_dialpad_background">
+        <shape android:shape="oval">
+            <solid android:color="@color/green" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="@dimen/dimen8"
+        android:drawable="@drawable/ic_baseline_call"
+        android:left="@dimen/dimen8"
+        android:right="@dimen/dimen8"
+        android:top="@dimen/dimen8" />
+</ripple>

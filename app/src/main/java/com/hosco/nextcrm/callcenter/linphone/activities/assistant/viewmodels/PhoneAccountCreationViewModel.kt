@@ -1,0 +1,151 @@
+
+package org.linphone.activities.assistant.viewmodels
+
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.hosco.nextcrm.callcenter.R
+import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.corePreferences
+import org.linphone.core.AccountCreator
+import org.linphone.core.AccountCreatorListenerStub
+import org.linphone.core.tools.Log
+import org.linphone.utils.AppUtils
+import org.linphone.utils.Event
+
+class PhoneAccountCreationViewModelFactory(private val accountCreator: AccountCreator) :
+    ViewModelProvider.NewInstanceFactory() {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return PhoneAccountCreationViewModel(accountCreator) as T
+    }
+}
+
+class PhoneAccountCreationViewModel(accountCreator: AccountCreator) : AbstractPhoneViewModel(accountCreator) {
+    val username = MutableLiveData<String>()
+    val useUsername = MutableLiveData<Boolean>()
+    val usernameError = MutableLiveData<String>()
+
+    val createEnabled: MediatorLiveData<Boolean> = MediatorLiveData()
+
+    val waitForServerAnswer = MutableLiveData<Boolean>()
+
+    val goToSmsValidationEvent: MutableLiveData<Event<Boolean>> by lazy {
+        MutableLiveData<Event<Boolean>>()
+    }
+
+    val onErrorEvent: MutableLiveData<Event<String>> by lazy {
+        MutableLiveData<Event<String>>()
+    }
+
+    private val listener = object : AccountCreatorListenerStub() {
+        override fun onIsAccountExist(
+            creator: AccountCreator,
+            status: AccountCreator.Status,
+            response: String?
+        ) {
+            Log.i("[Phone Account Creation] onIsAccountExist status is $status")
+            when (status) {
+                AccountCreator.Status.AccountExist, AccountCreator.Status.AccountExistWithAlias -> {
+                    waitForServerAnswer.value = false
+                    if (useUsername.value == true) {
+                        usernameError.value = AppUtils.getString(R.string.assistant_error_username_already_exists)
+                    } else {
+                        phoneNumberError.value = AppUtils.getString(R.string.assistant_error_phone_number_already_exists)
+                    }
+                }
+                AccountCreator.Status.AccountNotExist -> {
+                    val createAccountStatus = creator.createAccount()
+                    Log.i("[Phone Account Creation] createAccount returned $createAccountStatus")
+                    if (createAccountStatus != AccountCreator.Status.RequestOk) {
+                        waitForServerAnswer.value = false
+                        onErrorEvent.value = Event("Error: ${status.name}")
+                    }
+                }
+                else -> {
+                    waitForServerAnswer.value = false
+                    onErrorEvent.value = Event("Error: ${status.name}")
+                }
+            }
+        }
+
+        override fun onCreateAccount(
+            creator: AccountCreator,
+            status: AccountCreator.Status,
+            response: String?
+        ) {
+            Log.i("[Phone Account Creation] onCreateAccount status is $status")
+            waitForServerAnswer.value = false
+            when (status) {
+                AccountCreator.Status.AccountCreated -> {
+                    goToSmsValidationEvent.value = Event(true)
+                }
+                AccountCreator.Status.AccountExistWithAlias -> {
+                    phoneNumberError.value = AppUtils.getString(R.string.assistant_error_phone_number_already_exists)
+                }
+                else -> {
+                    onErrorEvent.value = Event("Error: ${status.name}")
+                }
+            }
+        }
+    }
+
+    init {
+        useUsername.value = false
+        accountCreator.addListener(listener)
+
+        createEnabled.value = false
+        createEnabled.addSource(prefix) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(phoneNumber) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(useUsername) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(username) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(usernameError) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(phoneNumberError) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+    }
+
+    override fun onCleared() {
+        accountCreator.removeListener(listener)
+        super.onCleared()
+    }
+
+    fun create() {
+        accountCreator.setPhoneNumber(phoneNumber.value, prefix.value)
+        if (useUsername.value == true) {
+            accountCreator.username = username.value
+        } else {
+            accountCreator.username = accountCreator.phoneNumber
+        }
+
+        waitForServerAnswer.value = true
+        val status = accountCreator.isAccountExist
+        Log.i("[Phone Account Creation] isAccountExist returned $status")
+        if (status != AccountCreator.Status.RequestOk) {
+            waitForServerAnswer.value = false
+            onErrorEvent.value = Event("Error: ${status.name}")
+        }
+    }
+
+    private fun isCreateButtonEnabled(): Boolean {
+        val usernameRegexp = corePreferences.config.getString("assistant", "username_regex", "^[a-z0-9+_.\\-]*\$")
+        return isPhoneNumberOk() && usernameRegexp != null &&
+            (
+                useUsername.value == false ||
+                    username.value.orEmpty().matches(Regex(usernameRegexp)) &&
+                    username.value.orEmpty().isNotEmpty() &&
+                    usernameError.value.orEmpty().isEmpty()
+                )
+    }
+}

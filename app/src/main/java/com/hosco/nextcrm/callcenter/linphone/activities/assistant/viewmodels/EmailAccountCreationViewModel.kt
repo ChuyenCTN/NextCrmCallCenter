@@ -1,0 +1,151 @@
+package org.linphone.activities.assistant.viewmodels
+
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.hosco.nextcrm.callcenter.R
+import org.linphone.core.AccountCreator
+import org.linphone.core.AccountCreatorListenerStub
+import org.linphone.core.tools.Log
+import org.linphone.utils.AppUtils
+import org.linphone.utils.Event
+
+class EmailAccountCreationViewModelFactory(private val accountCreator: AccountCreator) :
+    ViewModelProvider.NewInstanceFactory() {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return EmailAccountCreationViewModel(accountCreator) as T
+    }
+}
+
+class EmailAccountCreationViewModel(val accountCreator: AccountCreator) : ViewModel() {
+    val username = MutableLiveData<String>()
+    val usernameError = MutableLiveData<String>()
+
+    val email = MutableLiveData<String>()
+    val emailError = MutableLiveData<String>()
+
+    val password = MutableLiveData<String>()
+    val passwordError = MutableLiveData<String>()
+
+    val passwordConfirmation = MutableLiveData<String>()
+    val passwordConfirmationError = MutableLiveData<String>()
+
+    val createEnabled: MediatorLiveData<Boolean> = MediatorLiveData()
+
+    val waitForServerAnswer = MutableLiveData<Boolean>()
+
+    val goToEmailValidationEvent = MutableLiveData<Event<Boolean>>()
+
+    val onErrorEvent: MutableLiveData<Event<String>> by lazy {
+        MutableLiveData<Event<String>>()
+    }
+
+    private val listener = object : AccountCreatorListenerStub() {
+        override fun onIsAccountExist(
+            creator: AccountCreator,
+            status: AccountCreator.Status,
+            response: String?
+        ) {
+            Log.i("[Assistant] [Account Creation] onIsAccountExist status is $status")
+            when (status) {
+                AccountCreator.Status.AccountExist, AccountCreator.Status.AccountExistWithAlias -> {
+                    waitForServerAnswer.value = false
+                    usernameError.value = AppUtils.getString(R.string.assistant_error_username_already_exists)
+                }
+                AccountCreator.Status.AccountNotExist -> {
+                    val createAccountStatus = creator.createAccount()
+                    if (createAccountStatus != AccountCreator.Status.RequestOk) {
+                        waitForServerAnswer.value = false
+                        onErrorEvent.value = Event("Error: ${status.name}")
+                    }
+                }
+                else -> {
+                    waitForServerAnswer.value = false
+                    onErrorEvent.value = Event("Error: ${status.name}")
+                }
+            }
+        }
+
+        override fun onCreateAccount(
+            creator: AccountCreator,
+            status: AccountCreator.Status,
+            response: String?
+        ) {
+            Log.i("[Account Creation] onCreateAccount status is $status")
+            waitForServerAnswer.value = false
+
+            when (status) {
+                AccountCreator.Status.AccountCreated -> {
+                    goToEmailValidationEvent.value = Event(true)
+                }
+                else -> {
+                    onErrorEvent.value = Event("Error: ${status.name}")
+                }
+            }
+        }
+    }
+
+    init {
+        accountCreator.addListener(listener)
+
+        createEnabled.value = false
+        createEnabled.addSource(username) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(usernameError) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(email) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(emailError) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(password) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(passwordError) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(passwordConfirmation) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+        createEnabled.addSource(passwordConfirmationError) {
+            createEnabled.value = isCreateButtonEnabled()
+        }
+    }
+
+    override fun onCleared() {
+        accountCreator.removeListener(listener)
+        super.onCleared()
+    }
+
+    fun create() {
+        accountCreator.username = username.value
+        accountCreator.password = password.value
+        accountCreator.email = email.value
+
+        waitForServerAnswer.value = true
+        val status = accountCreator.isAccountExist
+        Log.i("[Assistant] [Account Creation] Account exists returned $status")
+        if (status != AccountCreator.Status.RequestOk) {
+            waitForServerAnswer.value = false
+            onErrorEvent.value = Event("Error: ${status.name}")
+        }
+    }
+
+    private fun isCreateButtonEnabled(): Boolean {
+        return username.value.orEmpty().isNotEmpty() &&
+            email.value.orEmpty().isNotEmpty() &&
+            password.value.orEmpty().isNotEmpty() &&
+            passwordConfirmation.value.orEmpty().isNotEmpty() &&
+            password.value == passwordConfirmation.value &&
+            usernameError.value.orEmpty().isEmpty() &&
+            emailError.value.orEmpty().isEmpty() &&
+            passwordError.value.orEmpty().isEmpty() &&
+            passwordConfirmationError.value.orEmpty().isEmpty()
+    }
+}

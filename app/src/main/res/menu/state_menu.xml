@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_state_available"
+        android:icon="@drawable/ic_baseline_dot_available"
+        android:title="@string/txt_available" />
+<!--    <item-->
+<!--        android:id="@+id/item_state_lunch_break"-->
+<!--        android:icon="@drawable/ic_baseline_dot_lunch_break"-->
+<!--        android:title="@string/txt_lunch_break" />-->
+    <item
+        android:id="@+id/item_state_short_break"
+        android:icon="@drawable/ic_baseline_dot_short_break"
+        android:title="@string/txt_short_break" />
+    <item
+        android:id="@+id/item_state_not_available"
+        android:icon="@drawable/ic_baseline_dot_not_available"
+        android:title="@string/txt_not_available" />Ø
+</menu>

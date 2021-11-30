@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="org.linphone.activities.call.viewmodels.IncomingCallViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:keepScreenOn="true"
+        android:orientation="vertical">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/status_fragment"
+            android:name="org.linphone.activities.call.fragments.StatusFragment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:layout_alignParentTop="true"
+            tools:layout="@layout/call_status_fragment" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/layout_call_end"
+            android:layout_below="@+id/status_fragment"
+            android:background="@drawable/bg_ed_call_activity_crm"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen30"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/call_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:text="@string/incoming_call"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:text="@{viewModel.phoneContact}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15"
+                    android:visibility="@{viewModel.isShowNumberPhone()?View.VISIBLE:View.GONE}" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dimen70"
+                android:layout_height="@dimen/dimen4"
+                android:layout_marginTop="@dimen/dimen4"
+                android:background="@color/colorPressButton" />
+
+            <TextView
+                android:id="@+id/caller_name_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen12"
+                android:fontFamily="@font/sfprodisplay_medium"
+                android:gravity="left"
+                android:text="@{viewModel.nameContact}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen32" />
+
+            <TextView
+                android:id="@+id/caller_number_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen2"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.address}"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen3"
+                android:gravity="center_horizontal"
+                android:text="NextCrm - CallCenter"
+                android:textSize="@dimen/sp14" />
+
+
+            <TextView
+                android:id="@+id/caller_avatar"
+                textBorder="@{viewModel.nameContact}"
+                android:layout_width="@dimen/dimen120"
+                android:layout_height="@dimen/dimen120"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@drawable/bg_call_avatar"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp46" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_call_end"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen140"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dimen30">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.decline(!viewModel.screenLocked)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/call_decline"
+                    android:layout_width="@dimen/dimen100"
+                    android:layout_height="@dimen/dimen72"
+                    android:contentDescription="@string/txt_decline"
+                    android:src="@drawable/ic_call_decline" />
+
+                <TextView
+                    android:id="@+id/call_decline_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen8"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:gravity="center"
+                    android:text="@string/txt_decline"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sp14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.answer(!viewModel.screenLocked)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/call_accept"
+                    android:layout_width="@dimen/dimen100"
+                    android:layout_height="@dimen/dimen72"
+                    android:contentDescription="@string/txt_agree"
+                    android:src="@drawable/ic_call_accept" />
+
+                <TextView
+                    android:id="@+id/call_accept_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen8"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:gravity="center"
+                    android:text="@string/txt_agree"
+                    android:textColor="@color/colorPressButton"
+                    android:textSize="@dimen/sp14" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

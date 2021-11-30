@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.note.FilterNoteActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolBarNote"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_toolbar">
+
+        <ImageView
+            android:id="@+id/imgBackFilterTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_press_icon_toolbar"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen16"
+            android:paddingRight="@dimen/dimen10"
+            android:src="@drawable/ic_baseline_arrow_back"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imgDonefilterTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_press_icon_toolbar"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/dimen10"
+            android:src="@drawable/ic_baseline_check"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/dimen4"
+            android:text="@string/txt_title_filter_ticket"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutContactFilterTicket"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen46"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/tvTitleContactFilterTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen46"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dimen10"
+            android:text="@string/txt_contact"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/tvContactFilterTicket"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen46"
+            android:layout_toRightOf="@+id/tvTitleContactFilterTicket"
+
+            android:drawableRight="@drawable/ic_baseline_arrow_forward"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dimen10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen1"
+        android:layout_marginLeft="@dimen/dimen6"
+        android:background="@color/gray_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen46"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dimen10"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/tvStateFilterTicket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="2.5"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center_vertical"
+            android:text="@string/txt_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spnStatusFilterTicket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:layout_marginTop="@dimen/dimen0"
+            android:layout_toRightOf="@+id/tvStateFilterTicket"
+            android:layout_weight="7.5"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="right"
+            android:hint="@string/txt_status"
+            android:textSize="@dimen/sp15"
+            app:ms_padding_left="@dimen/dimen8"
+            app:ms_text_color="@color/black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen1"
+        android:layout_marginLeft="@dimen/dimen6"
+        android:background="@color/gray_line" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen46"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dimen10"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/tvPriorityFilterTicket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="2.5"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center_vertical"
+            android:text="@string/txt_priority"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spnPriorityFilterTicket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:layout_marginTop="@dimen/dimen0"
+            android:layout_toRightOf="@+id/tvStateFilterTicket"
+            android:layout_weight="7.5"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="right"
+            android:hint="@string/txt_priority"
+            android:textSize="@dimen/sp15"
+            app:ms_padding_left="@dimen/dimen8"
+            app:ms_text_color="@color/black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen1"
+        android:layout_marginLeft="@dimen/dimen6"
+        android:background="@color/gray_line" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen46"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dimen10"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/tvTypeFilterTicket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="2.5"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center_vertical"
+            android:text="@string/txt_type"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spnTypeFilterTicket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen8"
+            android:layout_marginTop="@dimen/dimen0"
+            android:layout_toRightOf="@+id/tvStateFilterTicket"
+            android:layout_weight="7.5"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="right"
+            android:hint="@string/txt_type"
+            android:textSize="@dimen/sp15"
+            app:ms_padding_left="@dimen/dimen8"
+            app:ms_text_color="@color/black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen1"
+        android:layout_marginLeft="@dimen/dimen6"
+        android:background="@color/gray_line" />
+
+
+    <TextView
+        android:id="@+id/btnRefreshFilterNote"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen46"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen80"
+        android:background="@drawable/bg_login_button"
+        android:clickable="true"
+        android:fontFamily="@font/sfprodisplay_regular"
+        android:gravity="center"
+        android:minWidth="@dimen/dimen160"
+        android:text="@string/txt_refresh"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp17" />
+
+</LinearLayout>

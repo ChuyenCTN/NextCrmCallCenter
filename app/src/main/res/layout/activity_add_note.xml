@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.addnote.AddNoteActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolBarNote"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_toolbar">
+
+        <ImageView
+            android:id="@+id/imgBackAddNote"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_press_icon_toolbar"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen16"
+            android:paddingRight="@dimen/dimen10"
+            android:src="@drawable/ic_baseline_arrow_back"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/dimen4"
+            android:text="@string/txt_add_note_toolbar"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dimen20"
+            android:paddingTop="@dimen/dimen18">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="@string/txt_contact"
+                android:textColor="@color/color_title_add_note"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/edContactInputAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen40"
+                android:layout_marginTop="@dimen/dimen8"
+                android:backgroundTint="@color/color_hint_add_contact"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="bottom"
+                android:hint="@string/txt_hint_contact_input"
+                android:maxLines="4"
+                android:paddingHorizontal="@dimen/dimen6"
+                android:paddingBottom="@dimen/dimen4"
+                android:scrollHorizontally="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_hint_add_contact"
+                android:textSize="@dimen/sp16" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen1"
+                android:background="@color/color_hint_add_contact" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen14"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="@string/txt_note_title"
+                android:textColor="@color/color_title_add_note"
+                android:textSize="@dimen/sp16" />
+
+            <EditText
+                android:id="@+id/edNoteTitleInputAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen8"
+                android:backgroundTint="@color/color_hint_add_contact"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="top|left"
+                android:hint="@string/txt_note_title"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine"
+                android:maxLines="4"
+                android:paddingHorizontal="@dimen/dimen6"
+                android:scrollbars="vertical"
+                android:scrollHorizontally="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_hint_add_contact"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/txtTitleNoteAddNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen14"
+                android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
+                android:drawablePadding="@dimen/dimen10"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="@string/txt_title_internal_note"
+                android:textColor="@color/color_title_add_note"
+                android:textSize="@dimen/sp16" />
+
+            <EditText
+                android:id="@+id/edIntenalNoteInputAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen8"
+                android:backgroundTint="@color/color_hint_add_contact"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="top|left"
+                android:hint="@string/txt_hint_note_input"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:maxLines="4"
+                android:paddingHorizontal="@dimen/dimen6"
+                android:scrollbars="vertical"
+                android:scrollHorizontally="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_hint_add_contact"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen14"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="@string/txt_status"
+                android:textColor="@color/color_title_add_note"
+                android:textSize="@dimen/sp16" />
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spnStateAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen8"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:hint="@string/txt_status"
+                app:ms_padding_left="@dimen/dimen10"
+                app:ms_text_color="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen14"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="@string/txt_type"
+                android:textColor="@color/color_title_add_note"
+                android:textSize="@dimen/sp16" />
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spnTypeAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen8"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:hint="@string/txt_type"
+                app:ms_padding_left="@dimen/dimen10"
+                app:ms_text_color="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen14"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:text="@string/txt_priority"
+                android:textColor="@color/color_title_add_note"
+                android:textSize="@dimen/sp16" />
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spnPriorityAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen8"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:hint="@string/txt_priority"
+                app:ms_padding_left="@dimen/dimen10"
+                app:ms_text_color="@color/black" />
+
+            <TextView
+                android:id="@+id/btnAddNote"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen46"
+                android:layout_marginTop="@dimen/dimen80"
+                android:background="@drawable/bg_login_button"
+                android:clickable="true"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="center"
+                android:text="@string/txt_add"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp17" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

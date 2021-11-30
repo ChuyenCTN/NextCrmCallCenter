@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="settingViewModel"
+            type="com.hosco.nextcrm.callcenter.ui.setting.SettingViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/layoutInfoProfile"
+                        android:layout_alignBottom="@+id/layoutInfoProfile"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_profile" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutInfoProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textProfile"
+                            android:layout_width="@dimen/dimen100"
+                            android:layout_height="@dimen/dimen100"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/sp40"
+                            android:fontFamily="@font/sfprodisplay_regular"
+                            android:gravity="center"
+                            android:text="CH"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp40"
+                            app:textBorder="@{settingViewModel.fullName}" />
+
+                        <TextView
+                            android:id="@+id/tvNamPeofile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen16"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sfprodisplay_bold"
+                            android:maxLines="2"
+                            android:text="@{settingViewModel.fullName}"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp17" />
+
+                        <TextView
+                            android:id="@+id/tvPhoneNumberProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sfprodisplay_regular"
+                            android:maxLines="1"
+                            android:text="@{settingViewModel.tel}"
+                            android:textSize="@dimen/sp17" />
+
+                        <TextView
+                            android:id="@+id/tvStateProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen36"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:background="@drawable/bg_state_profile"
+                            android:clickable="true"
+                            android:drawableLeft="@drawable/ic_baseline_dot_available"
+                            android:drawableRight="@drawable/ic_baseline_arrow_drop_down"
+                            android:drawablePadding="@dimen/dimen8"
+                            android:fontFamily="@font/sfprodisplay_regular"
+                            android:gravity="center"
+                            android:minWidth="@dimen/dimen200"
+                            android:paddingHorizontal="@dimen/dimen10"
+                            android:text="@string/txt_loading"
+                            android:textColor="@color/color_state_profile"
+                            android:textSize="@dimen/sp16" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_domain"
+                        android:textColor="@color/gray2"
+                        android:textSize="@dimen/sp16" />
+
+                    <TextView
+                        android:id="@+id/tvValueDomainProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_bold"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/dimen8"
+                        android:text="@{settingViewModel.domain}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:background="@color/gray5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_extension"
+                        android:textColor="@color/gray2"
+                        android:textSize="@dimen/sp16" />
+
+                    <TextView
+                        android:id="@+id/tvValueExtensionProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_bold"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/dimen8"
+                        android:text="@{settingViewModel.extension}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:background="@color/gray5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_email"
+                        android:textColor="@color/gray2"
+                        android:textSize="@dimen/sp16" />
+
+                    <TextView
+                        android:id="@+id/tvValueEmailProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_bold"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/dimen8"
+                        android:text="@{settingViewModel.email}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:background="@color/gray5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_ext"
+                        android:textColor="@color/gray2"
+                        android:textSize="@dimen/sp16" />
+
+                    <TextView
+                        android:id="@+id/tvValueExtProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_bold"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/dimen8"
+                        android:text="@{settingViewModel.email}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray5"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:paddingVertical="@dimen/dimen6"
+                    android:paddingLeft="@dimen/dimen8"
+                    android:text="@string/txt_numbers_list"
+                    android:textColor="@color/color_gray_my"
+                    android:textSize="@dimen/sp16" />
+
+                <TextView
+                    android:id="@+id/tvValueNumberPhoneProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:text="@string/txt_numbers_list"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen10"
+                    android:background="@color/gray5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_version"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+
+                    <TextView
+                        android:id="@+id/tvValueVersionProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_bold"
+                        android:gravity="right"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/dimen8"
+                        android:text="@{settingViewModel.version}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen10"
+                    android:background="@color/gray5" />
+
+                <LinearLayout
+                    android:id="@+id/layoutChangePasswordProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen20">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen16"
+                        android:layout_height="@dimen/dimen16"
+                        android:src="@drawable/icon_change_pass" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:maxLines="1"
+                        android:paddingVertical="@dimen/dimen18"
+                        android:paddingLeft="@dimen/dimen10"
+                        android:paddingRight="@dimen/dimen12"
+                        android:text="@string/txt_change_password"
+                        android:textColor="@color/colorPressButton"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen10"
+                    android:background="@color/gray5" />
+
+                <TextView
+                    android:id="@+id/tvLogoutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_logout"
+                    android:drawablePadding="@dimen/dimen12"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen20"
+                    android:paddingRight="@dimen/dimen12"
+                    android:text="@string/txt_logout"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sp16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen10"
+                    android:background="@color/gray5" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:id="@+id/imgUpdateProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="@dimen/dimen4"
+            android:layout_marginTop="@dimen/dimen4"
+            android:layout_marginEnd="@dimen/dimen4"
+            android:layout_marginBottom="@dimen/dimen4"
+            android:background="@drawable/bg_press_icon_toolbar"
+            android:clickable="true"
+            android:padding="@dimen/dimen8"
+            android:src="@drawable/ic_baseline_edit_24" />
+
+    </RelativeLayout>
+</layout>

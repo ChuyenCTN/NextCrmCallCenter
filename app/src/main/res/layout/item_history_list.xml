@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="historyModel"
+            type="com.hosco.nextcrm.callcenter.model.response.HistoryResponse" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/dimen4"
+        android:paddingTop="@dimen/dimen8"
+        android:paddingBottom="@dimen/dimen2">
+
+        <ImageView
+            android:id="@+id/imgRemoveItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dimen4"
+            android:src="@drawable/ic_baseline_remove_circle"
+            android:visibility="@{historyModel.isRemove ? View.VISIBLE : View.GONE}" />
+
+        <ImageView
+            android:id="@+id/imgCallItemHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutSubjectItemNote"
+            android:layout_marginTop="@dimen/dimen6"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:src="@drawable/ic_baseline_call_18" />
+
+        <TextView
+            android:id="@+id/tvFirstNameItemNote"
+            android:layout_width="@dimen/dimen50"
+            android:layout_height="@dimen/dimen50"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_toRightOf="@+id/imgRemoveItem"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp20"
+            app:textFirst="@{historyModel.fromNumber}" />
+
+        <RelativeLayout
+            android:id="@+id/layoutSubjectItemNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote">
+
+            <TextView
+                android:id="@+id/tvFromCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imgArrowItemHistory"
+                android:layout_alignBottom="@+id/imgArrowItemHistory"
+                android:ellipsize="end"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{historyModel.fromNumber}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15" />
+
+            <ImageView
+                android:id="@+id/imgArrowItemHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen4"
+                android:layout_toRightOf="@+id/tvFromCall"
+                android:src="@drawable/ic_baseline_arrow_right_alt" />
+
+            <TextView
+                android:id="@+id/tvToCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imgArrowItemHistory"
+                android:layout_alignBottom="@+id/imgArrowItemHistory"
+                android:layout_toRightOf="@+id/imgArrowItemHistory"
+                android:ellipsize="end"
+                android:fontFamily="@font/sfprodisplay_regular"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingRight="@dimen/dimen8"
+                android:text="@{historyModel.toNumber}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvAsignItemNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutSubjectItemNote"
+            android:layout_marginLeft="@dimen/dimen6"
+            android:layout_marginTop="@dimen/dimen6"
+            android:layout_toLeftOf="@+id/tvTimeItemHistory"
+            android:layout_toRightOf="@+id/imgCallItemHistory"
+            android:drawableLeft="@drawable/ic_baseline_arrow_right_alt_16"
+            android:drawablePadding="@dimen/dimen6"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:paddingRight="@dimen/dimen8"
+            android:text="@{historyModel.directionText}"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp13" />
+
+        <TextView
+            android:id="@+id/tvTimeItemHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvAsignItemNote"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimen6"
+            android:layout_marginRight="@dimen/dimen6"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:text="@{historyModel.timeStarted}"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp13" />
+
+        <TextView
+            android:id="@+id/tvDurationItemHistory"
+            textDuration="@{historyModel.duration}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTimeItemHistory"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimen8"
+            android:layout_marginRight="@dimen/dimen6"
+            android:layout_toRightOf="@+id/tvStateItemHistory"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="right"
+            android:maxLines="1"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp13" />
+
+        <TextView
+            android:id="@+id/tvStateItemHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTimeItemHistory"
+            android:layout_alignLeft="@+id/imgCallItemHistory"
+            android:layout_marginTop="@dimen/dimen8"
+            android:layout_marginRight="@dimen/dimen6"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:text="@{historyModel.status}"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp13" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen1"
+            android:layout_below="@+id/tvDurationItemHistory"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:background="@color/gray_line" />
+    </RelativeLayout>
+</layout>

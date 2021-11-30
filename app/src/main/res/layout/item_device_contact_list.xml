@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="deviceContactModel"
+            type="com.hosco.nextcrm.callcenter.model.response.DeviceContact" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/layoutItemDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen8"
+        android:layout_marginBottom="@dimen/dimen4"
+        android:paddingHorizontal="@dimen/dimen8">
+
+        <TextView
+            android:id="@+id/tvFirstNameItemNote"
+            android:layout_width="@dimen/dimen50"
+            android:layout_height="@dimen/dimen50"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen16"
+            android:layout_marginBottom="@dimen/dimen8"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp20"
+            app:textFirst="@{deviceContactModel.name}" />
+
+        <TextView
+            android:id="@+id/tvNameContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_medium"
+            android:maxLines="1"
+            android:paddingRight="@dimen/dimen8"
+            android:text="@{deviceContactModel.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/tvNumberPhoneContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNameContact"
+            android:layout_marginTop="@dimen/dimen6"
+            android:layout_toRightOf="@+id/tvFirstNameItemNote"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:maxLines="1"
+            android:paddingRight="@dimen/dimen8"
+            android:text="@{deviceContactModel.phone}"
+            android:textColor="@color/color_purple_2"
+            android:textSize="@dimen/sp14" />
+    </RelativeLayout>
+</layout>

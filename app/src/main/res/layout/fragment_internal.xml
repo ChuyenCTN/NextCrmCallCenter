@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/layoutSearchInternal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen2"
+        android:layout_marginBottom="@dimen/dimen4"
+        android:paddingHorizontal="@dimen/dimen8">
+
+        <EditText
+            android:id="@+id/edSearchInternal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginRight="@dimen/dimen8"
+            android:layout_toLeftOf="@+id/imgSearchInternal"
+            android:background="@drawable/bg_ed_search"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:hint="@string/txt_hint_search_contact"
+            android:imeOptions="actionSearch"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/dimen14"
+            android:paddingRight="@dimen/dimen38"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/imgClearSearchInternal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/edSearchInternal"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/dimen2"
+            android:src="@drawable/ic_baseline_close_gray"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imgSearchInternal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/dimen8"
+            android:src="@drawable/search"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeInternal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutSearchInternal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvInternal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/dimen8" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/loadmoreInternal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sp40"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_loading_more"
+        android:indeterminateDrawable="@drawable/crm_progress"
+        android:paddingVertical="@dimen/dimen6"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layoutNodataInternal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen300"
+            android:src="@drawable/nodataimage_non_message" />
+
+        <TextView
+            android:id="@+id/tvMessagePermissionDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen30"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:gravity="center"
+            android:text="@string/txt_opps"
+            android:textColor="@color/gray2"
+            android:textSize="@dimen/sp16" />
+
+    </LinearLayout>
+</RelativeLayout>

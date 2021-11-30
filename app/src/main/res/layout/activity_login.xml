@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="viewModel"
+            type="com.hosco.nextcrm.callcenter.ui.login.LoginViewModel" />
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_domain"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:context=".ui.login.LoginActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dimen200"
+                android:layout_height="@dimen/dimen60"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen50"
+                android:layout_marginBottom="@dimen/dimen100"
+                android:src="@drawable/logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_login_layout"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/dimen16"
+                android:paddingTop="@dimen/dimen40"
+                android:paddingBottom="@dimen/dimen16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:text="@string/txt_hello"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp30" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen4"
+                    android:layout_marginBottom="@dimen/dimen40"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:text="@string/txt_login_to_continue"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp16" />
+
+                <EditText
+                    android:id="@+id/edUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorApp"
+                    android:fontFamily="@font/sfprodisplay_medium"
+                    android:hint="@string/txt_username"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingHorizontal="@dimen/dimen8"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp17" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen20">
+
+                    <EditText
+                        android:id="@+id/edPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorApp"
+                        android:fontFamily="@font/sfprodisplay_medium"
+                        android:hint="@string/txt_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:paddingLeft="@dimen/dimen8"
+                        android:paddingRight="@dimen/dimen38"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp17" />
+
+                    <ImageView
+                        android:id="@+id/imgShowHidePass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/dimen8"
+                        android:clickable="true"
+                        android:padding="@dimen/dimen2"
+                        android:src="@drawable/ic_baseline_visibility" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen46"
+                    android:layout_marginTop="@dimen/dimen17"
+                    android:background="@drawable/bg_login_button"
+                    android:clickable="true"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:gravity="center"
+                    android:text="@string/txt_login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp17" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen10">
+
+                    <TextView
+                        android:id="@+id/tvOtherDomain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:clickable="true"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_other_domain"
+                        android:textSize="@dimen/sp15" />
+
+                    <TextView
+                        android:id="@+id/tvForgotPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_forgot_password"
+                        android:textSize="@dimen/sp15" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="controlsFadingViewModel"
+            type="org.linphone.activities.call.viewmodels.ControlsFadingViewModel" />
+
+        <variable
+            name="viewModel"
+            type="org.linphone.activities.call.viewmodels.CallsViewModel" />
+
+        <variable
+            name="controlsViewModel"
+            type="org.linphone.activities.call.viewmodels.ControlsViewModel" />
+
+        <variable
+            name="conferenceViewModel"
+            type="org.linphone.activities.call.viewmodels.ConferenceViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/stats_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/backgroundColor"
+        android:keepScreenOn="true">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/status_fragment"
+            android:name="org.linphone.activities.call.fragments.StatusFragment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen30"
+            android:visibility="@{controlsFadingViewModel.areControlsHidden ? View.GONE : View.VISIBLE, default=visible}"
+            tools:layout="@layout/call_status_fragment" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/status_fragment"
+            android:background="@color/white"
+            android:keepScreenOn="true"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:background="@drawable/bg_ed_call_activity_crm"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/dimen10"
+                android:paddingTop="@dimen/dimen20">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/call_status_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/is_calling"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@{viewModel.phoneContact}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp15"
+                        android:visibility="@{viewModel.isShowNumberPhone()?View.VISIBLE:View.GONE}" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/dimen70"
+                    android:layout_height="@dimen/dimen4"
+                    android:layout_marginTop="@dimen/dimen4"
+                    android:background="@color/colorPressButton" />
+
+                <TextView
+                    android:id="@+id/caller_name_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:fontFamily="@font/sfprodisplay_medium"
+                    android:gravity="left"
+                    android:text="@{viewModel.nameContact}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen32" />
+
+                <TextView
+                    android:id="@+id/caller_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen2"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.address}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:gravity="center_horizontal"
+                    android:text="NextCrm - CallCenter"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/caller_avatar"
+                    textBorder="@{viewModel.nameContact}"
+                    android:layout_width="@dimen/dimen120"
+                    android:layout_height="@dimen/dimen120"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@drawable/bg_call_avatar"
+                    android:contentDescription="@string/txt_agree"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp46" />
+
+                <Chronometer
+                    android:id="@+id/callDurationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:fontFamily="@font/sfprodisplay_regular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16"
+                    tools:text="@{viewModel.callState}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dimen40"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ongoing_call_holder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dimen20"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="3">
+
+                        <ImageView
+                            android:id="@+id/call_toggle_microphone"
+                            android:layout_width="@dimen/dimen66"
+                            android:layout_height="@dimen/dimen66"
+                            android:layout_marginRight="@dimen/dimen20"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@{controlsViewModel.isMicrophoneMuted ? @string/content_description_disable_mic_mute : @string/content_description_enable_mic_mute}"
+                            android:enabled="@{controlsViewModel.isMuteMicrophoneEnabled}"
+                            android:onClick="@{() -> controlsViewModel.toggleMuteMicrophone()}"
+                            android:padding="@dimen/dimen14"
+                            android:selected="@{controlsViewModel.isMicrophoneMuted}"
+                            android:src="@drawable/ic_baseline_mic" />
+
+                        <ImageView
+                            android:id="@+id/call_dialpad"
+                            android:layout_width="@dimen/dimen66"
+                            android:layout_height="@dimen/dimen66"
+                            android:layout_marginHorizontal="@dimen/dimen20"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="@dimen/dimen14"
+                            android:src="@drawable/ic_baseline_dialpad" />
+
+                        <ImageView
+                            android:id="@+id/call_toggle_speaker"
+                            android:layout_width="@dimen/dimen66"
+                            android:layout_height="@dimen/dimen66"
+                            android:layout_marginLeft="@dimen/dimen20"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:onClick="@{() -> controlsViewModel.toggleSpeaker()}"
+                            android:padding="@dimen/dimen14"
+                            android:src="@drawable/ic_speaker_off_vector" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/dimen16"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        android:weightSum="6">
+
+                        <ImageView
+                            android:id="@+id/ic_reply"
+                            android:layout_width="@dimen/dimen66"
+                            android:layout_height="@dimen/dimen66"
+                            android:alpha="0.5"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="@dimen/dimen8"
+                            android:src="@drawable/ic_baseline_reply" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="2" />
+
+                        <ImageView
+                            android:id="@+id/ic_addFriend"
+                            android:layout_width="@dimen/dimen66"
+                            android:layout_height="@dimen/dimen66"
+                            android:alpha="0.5"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="@dimen/dimen8"
+                            android:src="@drawable/ic_baseline_person_add" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/call_end"
+                    android:layout_width="@dimen/dimen70"
+                    android:layout_height="@dimen/dimen70"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/dimen26"
+                    android:contentDescription="@string/txt_decline"
+                    android:onClick="@{() -> controlsViewModel.terminateCall()}"
+                    android:src="@drawable/ic_call_decline"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialpad_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bg_numpad"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/dialpad_input_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/dialpad_close"
+                    android:layout_width="@dimen/dimen50"
+                    android:layout_height="@dimen/dimen20"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen8"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_baseline_arrow_down" />
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/dialpad_include"
+                layout="@layout/layout_dialpad_crm" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

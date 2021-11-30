@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_line"
+    android:orientation="vertical"
+    tools:context=".ui.searchcontact.SearchContactActivity">
+
+    <RelativeLayout
+        android:id="@+id/layoutInputSearchContact"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imgBackSearchContact"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_press_icon_toolbar"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/sp16"
+            android:paddingRight="@dimen/dimen10"
+            android:src="@drawable/ic_baseline_arrow_back_black"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/edSearchContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/imgBackSearchContact"
+            android:backgroundTint="@color/transparent"
+            android:ellipsize="end"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:hint="@string/txt_hint_search_contact"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/dimen8"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16" />
+
+    </RelativeLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeSearchContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutInputSearchContact">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvSearchContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/dimen8"
+            android:paddingTop="@dimen/dimen8" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/tvNoDataSearchContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/sfprodisplay_regular"
+        android:text="@string/txt_opps"
+        android:textColor="@color/gray4"
+        android:textSize="@dimen/sp16"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/loadmoreSearchContact"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sp40"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_loading_more"
+        android:indeterminateDrawable="@drawable/crm_progress"
+        android:paddingVertical="@dimen/dimen6"
+        android:visibility="gone" />
+
+</RelativeLayout>
