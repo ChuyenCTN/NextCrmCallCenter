@@ -25,6 +25,7 @@ object Key {
     const val STATE_LIST_FILTER = "state_list_filter"
     const val TYPE_LIST_FILTER = "type_list_filter"
     const val PRIORITY_LIST_FILTER = "priority_list_filter"
+    const val SIP_AVAILABLE = "sip_available"
 }
 
 class SharePreferenceUtils {
@@ -65,6 +66,16 @@ class SharePreferenceUtils {
 
     fun getInt(key: String): Int {
         return mPrefs?.getInt(key, -1) ?: -1
+    }
+
+    fun saveBoolean(key: String, value: Boolean?) {
+        value?.let {
+            mPrefs?.edit()?.putBoolean(key, value)?.apply()
+        }
+    }
+
+    fun getBoolean(key: String): Boolean? {
+        return mPrefs?.getBoolean(key, false)
     }
 
     fun saveToken(token: String?) {

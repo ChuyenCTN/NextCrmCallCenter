@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
@@ -38,16 +39,23 @@ object DialogUtils {
         dialog?.dismiss()
     }
 
-    fun showCrmLoadingDialog(context: Context?) {
-        var dialogBuilder = AlertDialog.Builder(context)
-        val inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val dialogView = inflater.inflate(R.layout.crm_progress_loading, null)
-        val gradientDrawable = GradientDrawable()
-        dialogView?.progress_bar?.progressDrawable = gradientDrawable
-        dialogBuilder.setView(dialogView)
-        dialogBuilder.setCancelable(false)
-        dialogCrm = dialogBuilder.create()
-        dialogCrm?.show()
+    fun showCrmLoadingDialog(context: Context?, message: String?) {
+        try {
+            var dialogBuilder = AlertDialog.Builder(context)
+            val inflater =
+                context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val dialogView = inflater.inflate(R.layout.crm_progress_loading, null)
+            val tvMessageLoading: TextView by lazy { dialogView.findViewById<TextView>(R.id.tvMessageLoading) }
+            if (message != null)
+                tvMessageLoading.setText(message)
+            val gradientDrawable = GradientDrawable()
+            dialogView?.progress_bar?.progressDrawable = gradientDrawable
+            dialogBuilder.setView(dialogView)
+            dialogBuilder.setCancelable(false)
+            dialogCrm = dialogBuilder.create()
+            dialogCrm?.show()
+        } catch (e: Exception) {
+        }
     }
 
     fun dismissCrm() {

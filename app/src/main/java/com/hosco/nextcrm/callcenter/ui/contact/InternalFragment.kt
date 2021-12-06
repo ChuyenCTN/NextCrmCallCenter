@@ -82,7 +82,7 @@ class InternalFragment : BaseFragment() {
             adapter.setInternalListener(object : ItemClickInternal {
                 override fun onClick(internalResponse: InternalResponse) {
                     if (!internalResponse.crmExtensionId.isNullOrEmpty()) {
-                        dialpadViewModel.startCall(internalResponse.crmExtensionId)
+                        dialpadViewModel.startCall(rcvInternal, internalResponse.crmExtensionId)
                     }
                 }
             })

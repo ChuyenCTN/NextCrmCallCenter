@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.content.pm.PackageInfo
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.utils.GenColorBackground
 
 
@@ -35,7 +36,7 @@ class SettingViewModel : BaseViewModel() {
     val email: LiveData<String> = _email
 
     private val _phoneNumbers = MutableLiveData<String>()
-    val phoneNumbers: LiveData<String> = _phoneNumbers
+    val phoneNumber: LiveData<String> = _phoneNumbers
 
     private val _version = MutableLiveData<String>()
     val version: LiveData<String> = _version
@@ -46,12 +47,14 @@ class SettingViewModel : BaseViewModel() {
 //        }
     }
 
-    fun fillData() {
+    fun fillData(context: Context) {
         _fullName.value = getFullName1()
         _tel.value = getTelUser()
         _domain.value = getDomainUser()
         _extension.value = getExtensionUser()
         _email.value = getEmailUser()
+        _phoneNumbers.value = getPhoneNumber(context)
+        getVersionApp(context)
     }
 
     fun getFullName1(): String {
@@ -104,6 +107,18 @@ class SettingViewModel : BaseViewModel() {
             it.user.let {
                 it.extentionConfig.let {
                     it.displayName.let { return it }
+                }
+            }
+        }
+    }
+
+    fun getPhoneNumber(context: Context): String {
+        authResponse.let {
+            it.user.let {
+                it.tel.let {
+                    if (it != null)
+                        return it.toString()
+                    else return context.resources.getString(R.string.txt_no_identify)
                 }
             }
         }

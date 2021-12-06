@@ -23,8 +23,8 @@ class LoginActivity : BaseActivity() {
     var viewModel: LoginViewModel = LoginViewModel()
     var _domain = ""
 
-    var mFirebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    var mDatabaseReference: DatabaseReference? = null
+//    var mFirebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+//    var mDatabaseReference: DatabaseReference? = null
 
     override fun getRootLayoutId(): Int {
         return com.hosco.nextcrm.callcenter.R.layout.activity_login
@@ -69,7 +69,7 @@ class LoginActivity : BaseActivity() {
         })
 
         viewModel.isShowLoading.observe(this, {
-            if (it) DialogUtils.showCrmLoadingDialog(this)
+            if (it) DialogUtils.showCrmLoadingDialog(this,null)
             else DialogUtils.dismissCrm()
         })
 
@@ -92,29 +92,29 @@ class LoginActivity : BaseActivity() {
             SharePreferenceUtils.getInstances().logout()
         }
 
-        mDatabaseReference = mFirebaseDatabase.getReference("crmcallcenter")
-        mDatabaseReference!!.child("isSubmit")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    try {
-                        var isSubmit = snapshot.value
-                        if (isSubmit != null && isSubmit == true) {
-                            // hard value for submit app
-                            edUsername.setText("admin")
-                            edPassword.setText("gymmaster123")
-                        }
-                    } catch (e: Exception) {
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    try {
-
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-            })
+//        mDatabaseReference = mFirebaseDatabase.getReference("crmcallcenter")
+//        mDatabaseReference!!.child("isSubmit")
+//            .addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    try {
+//                        var isSubmit = snapshot.value
+//                        if (isSubmit != null && isSubmit == true) {
+//                            // hard value for submit app
+//                            edUsername.setText("admin")
+//                            edPassword.setText("gymmaster123")
+//                        }
+//                    } catch (e: Exception) {
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    try {
+//
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//            })
     }
 
     fun getUsername(): String {

@@ -53,7 +53,6 @@
                             android:layout_marginTop="@dimen/sp40"
                             android:fontFamily="@font/sfprodisplay_regular"
                             android:gravity="center"
-                            android:text="CH"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp40"
                             app:textBorder="@{settingViewModel.fullName}" />
@@ -95,7 +94,7 @@
                             android:gravity="center"
                             android:minWidth="@dimen/dimen200"
                             android:paddingHorizontal="@dimen/dimen10"
-                            android:text="@string/txt_loading"
+                            android:text="@string/txt_not_available"
                             android:textColor="@color/color_state_profile"
                             android:textSize="@dimen/sp16" />
 
@@ -109,6 +108,7 @@
                     android:paddingVertical="@dimen/dimen18"
                     android:paddingLeft="@dimen/dimen20"
                     android:paddingRight="@dimen/dimen12"
+                    android:visibility="gone"
                     android:weightSum="10">
 
                     <TextView
@@ -130,7 +130,6 @@
                         android:gravity="right"
                         android:maxLines="1"
                         android:paddingHorizontal="@dimen/dimen8"
-                        android:text="@{settingViewModel.domain}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp16" />
                 </LinearLayout>
@@ -139,7 +138,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dimen20"
-                    android:background="@color/gray5" />
+                    android:background="@color/gray5"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -148,6 +148,7 @@
                     android:paddingVertical="@dimen/dimen18"
                     android:paddingLeft="@dimen/dimen20"
                     android:paddingRight="@dimen/dimen12"
+                    android:visibility="gone"
                     android:weightSum="10">
 
                     <TextView
@@ -169,7 +170,6 @@
                         android:gravity="right"
                         android:maxLines="1"
                         android:paddingHorizontal="@dimen/dimen8"
-                        android:text="@{settingViewModel.extension}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp16" />
                 </LinearLayout>
@@ -178,7 +178,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dimen20"
-                    android:background="@color/gray5" />
+                    android:background="@color/gray5"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -187,6 +188,7 @@
                     android:paddingVertical="@dimen/dimen18"
                     android:paddingLeft="@dimen/dimen20"
                     android:paddingRight="@dimen/dimen12"
+                    android:visibility="gone"
                     android:weightSum="10">
 
                     <TextView
@@ -208,7 +210,6 @@
                         android:gravity="right"
                         android:maxLines="1"
                         android:paddingHorizontal="@dimen/dimen8"
-                        android:text="@{settingViewModel.email}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp16" />
                 </LinearLayout>
@@ -217,7 +218,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/dimen20"
-                    android:background="@color/gray5" />
+                    android:background="@color/gray5"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -247,7 +249,7 @@
                         android:gravity="right"
                         android:maxLines="1"
                         android:paddingHorizontal="@dimen/dimen8"
-                        android:text="@{settingViewModel.email}"
+                        android:text="@{settingViewModel.phoneNumber}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp16" />
                 </LinearLayout>
@@ -263,21 +265,38 @@
                     android:textColor="@color/color_gray_my"
                     android:textSize="@dimen/sp16" />
 
-                <TextView
-                    android:id="@+id/tvValueNumberPhoneProfile"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:clickable="true"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/sfprodisplay_regular"
-                    android:maxLines="1"
+                    android:orientation="horizontal"
                     android:paddingVertical="@dimen/dimen18"
                     android:paddingLeft="@dimen/dimen20"
                     android:paddingRight="@dimen/dimen12"
-                    android:text="@string/txt_numbers_list"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp16" />
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/sfprodisplay_regular"
+                        android:text="@string/txt_numbers_list"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+
+                    <TextView
+                        android:id="@+id/tvValueNumberPhoneProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sfprodisplay_bold"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/dimen8"
+                        android:text="@{settingViewModel.phoneNumber}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp16" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"

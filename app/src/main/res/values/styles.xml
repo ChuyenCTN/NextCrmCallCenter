@@ -10,7 +10,7 @@
     </style>
 
 
-     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Disable animations between activities -->
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@drawable/launch_screen</item>

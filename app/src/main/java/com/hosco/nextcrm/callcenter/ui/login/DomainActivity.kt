@@ -25,8 +25,8 @@ class DomainActivity : BaseActivity() {
     var viewModel: LoginViewModel = LoginViewModel()
     var _domain = ""
 
-    var mFirebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    var mDatabaseReference: DatabaseReference? = null
+//    var mFirebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+//    var mDatabaseReference: DatabaseReference? = null
 
     override fun getRootLayoutId(): Int {
         return R.layout.activity_domain
@@ -57,7 +57,7 @@ class DomainActivity : BaseActivity() {
         })
 
         viewModel.isShowLoading.observe(this, {
-            if (it) DialogUtils.showCrmLoadingDialog(this)
+            if (it) DialogUtils.showCrmLoadingDialog(this,null)
             else DialogUtils.dismissCrm()
         })
 
@@ -68,27 +68,27 @@ class DomainActivity : BaseActivity() {
             }
         })
 
-        mDatabaseReference = mFirebaseDatabase.getReference("crmcallcenter")
-        mDatabaseReference!!.child("isSubmit")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    try {
-                        var isSubmit = snapshot.value
-                        if (isSubmit != null && isSubmit == true) {
-                            edDomain.setText("hosco")
-                        }
-                    } catch (e: Exception) {
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    try {
-
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-            })
+//        mDatabaseReference = mFirebaseDatabase.getReference("crmcallcenter")
+//        mDatabaseReference!!.child("isSubmit")
+//            .addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    try {
+//                        var isSubmit = snapshot.value
+//                        if (isSubmit != null && isSubmit == true) {
+//                            edDomain.setText("hosco")
+//                        }
+//                    } catch (e: Exception) {
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    try {
+//
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//            })
     }
 
     override fun onCreateView(

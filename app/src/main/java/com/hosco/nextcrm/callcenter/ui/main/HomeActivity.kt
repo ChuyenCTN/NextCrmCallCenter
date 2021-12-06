@@ -26,6 +26,7 @@ import com.hosco.nextcrm.callcenter.ui.dialpad.DialpadActivity
 import com.hosco.nextcrm.callcenter.ui.history.HistoryFragment
 import com.hosco.nextcrm.callcenter.ui.note.NoteFragment
 import com.hosco.nextcrm.callcenter.ui.setting.SettingFragment
+import com.hosco.nextcrm.callcenter.utils.Key
 import com.hosco.nextcrm.callcenter.utils.SharePreferenceUtils
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_home.*
@@ -85,7 +86,6 @@ class HomeActivity : BaseActivity() {
                 ).apply {
                     startActivity(this)
                 }
-//                overridePendingTransition(R.anim.anim_slide_in_up, R.anim.anim_slide_out_down)
             }
         createProxyConfig()
     }
@@ -127,32 +127,8 @@ class HomeActivity : BaseActivity() {
     }
 
     fun createProxyConfig() {
-//        var authResponse = SharePreferenceUtils.getInstances().getAuthResponse()
-//
-//        var accountCreator: AccountCreator
-//        accountCreator = coreContext.core.createAccountCreator(corePreferences.xmlRpcServerUrl)
-//        accountCreator.language = Locale.getDefault().language
-//
-//        val extenConfig: ExtentionConfig = authResponse.user.extentionConfig
-//
-//        accountCreator.username = extenConfig.userName
-//        accountCreator.password = extenConfig.password
-//        accountCreator.domain = extenConfig.domain
-//        accountCreator.displayName = extenConfig.displayName
-//        accountCreator.transport = TransportType.Udp
-//
-//        val proxyConfig: ProxyConfig? = accountCreator.createProxyConfig()
-//
-//        if (proxyConfig == null) {
-//            Log.e("[Assistant] [Generic Login] Account creator couldn't create proxy config")
-//
-//            return
-//        }
-//
-//        Log.i("[Assistant] [Generic Login] Proxy config created")
-//        SipHelperCrm.onCreate()
-        SipHelperCrm.onLogin()
-
+        if (SharePreferenceUtils.getInstances().getBoolean(Key.SIP_AVAILABLE) == true)
+            SipHelperCrm.onLogin()
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {

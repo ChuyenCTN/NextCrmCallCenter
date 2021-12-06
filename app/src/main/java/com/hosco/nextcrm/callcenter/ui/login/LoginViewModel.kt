@@ -17,7 +17,9 @@ import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.base.BaseViewModel
 import com.hosco.nextcrm.callcenter.common.Const
 import com.hosco.nextcrm.callcenter.common.DialogUtils
+import com.hosco.nextcrm.callcenter.common.extensions.SipHelperCrm
 import com.hosco.nextcrm.callcenter.network.remote.auth.*
+import com.hosco.nextcrm.callcenter.utils.Key
 import com.hosco.nextcrm.callcenter.utils.SharePreferenceUtils
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -136,6 +138,12 @@ class LoginViewModel : BaseViewModel() {
         SharePreferenceUtils.getInstances().saveToken(authResponse.token)
         SharePreferenceUtils.getInstances().saveAuthRequest(authRequest)
         SharePreferenceUtils.getInstances().saveAuthResponse(authResponse)
+
+        if (authResponse != null && authResponse.user != null && authResponse.user.extentionConfig != null && authResponse.user.extentionConfig.userName != null && authResponse.user.extentionConfig.domain != null) {
+            SharePreferenceUtils.getInstances().saveBoolean(Key.SIP_AVAILABLE, true)
+        } else {
+            SharePreferenceUtils.getInstances().saveBoolean(Key.SIP_AVAILABLE, false)
+        }
     }
 
     fun setAuRequest(view: View, domain: String, username: String, password: String) {
@@ -147,21 +155,26 @@ class LoginViewModel : BaseViewModel() {
         }
     }
 
+    @SuppressLint("CheckResult")
     fun checkAutoLogin(activity: Activity) {
-        Completable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-            .subscribe {
-                if (!SharePreferenceUtils.getInstances().getDomain().isNullOrEmpty()) {
-                    if (SharePreferenceUtils.getInstances().getAuthRequest() != null)
-                        SharePreferenceUtils.getInstances().getAuthRequest()?.let { login(it) }
-                    else {
-                        activity.startActivity(Intent(activity, LoginActivity::class.java))
-                        activity.finish()
-                    }
-                } else {
+        if (!SharePreferenceUtils.getInstances().getDomain().isNullOrEmpty()) {
+            DialogUtils.showCrmLoadingDialog(
+                activity,
+                activity.resources.getString(R.string.txt_loading_login)
+            )
+            if (SharePreferenceUtils.getInstances().getAuthRequest() != null)
+                SharePreferenceUtils.getInstances().getAuthRequest()?.let { login(it) }
+            else {
+                activity.startActivity(Intent(activity, LoginActivity::class.java))
+                activity.finish()
+            }
+        } else {
+            Completable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribe {
                     activity.startActivity(Intent(activity, DomainActivity::class.java))
                     activity.finish()
                 }
-            }
+        }
     }
 
     fun checkAutoCustomer(activity: Activity) {

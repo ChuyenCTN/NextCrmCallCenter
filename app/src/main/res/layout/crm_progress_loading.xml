@@ -29,6 +29,7 @@
             android:indeterminateDrawable="@drawable/crm_progress" />
 
         <TextView
+            android:id="@+id/tvMessageLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfprodisplay_regular"

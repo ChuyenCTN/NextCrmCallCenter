@@ -4,10 +4,14 @@ import android.content.Context
 import android.os.Vibrator
 import android.provider.Settings
 import android.text.Editable
+import android.view.View
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.coreContext
 import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.corePreferences
+import com.hosco.nextcrm.callcenter.R
+import com.hosco.nextcrm.callcenter.utils.Key
+import com.hosco.nextcrm.callcenter.utils.SharePreferenceUtils
 import org.linphone.activities.main.dialer.NumpadDigitListener
 import org.linphone.activities.main.viewmodels.LogsUploadViewModel
 import org.linphone.compatibility.Compatibility
@@ -16,6 +20,7 @@ import org.linphone.core.Core
 import org.linphone.core.CoreListenerStub
 import org.linphone.core.VersionUpdateCheckResult
 import org.linphone.core.tools.Log
+import org.linphone.utils.DialogUtils
 import org.linphone.utils.Event
 import org.linphone.utils.LinphoneUtils
 
@@ -236,12 +241,22 @@ class DialpadViewModel : LogsUploadViewModel() {
         }
     }
 
-    fun startCall(numbberPhone: String) {
-        if (numbberPhone.isNotEmpty()) {
-            coreContext.startCall(numbberPhone)
-            eraseAll()
+    fun startCall(view: View, numbberPhone: String) {
+        if (SharePreferenceUtils.getInstances().getBoolean(Key.SIP_AVAILABLE) == true) {
+            if (numbberPhone.isNotEmpty()) {
+                coreContext.startCall(numbberPhone)
+                eraseAll()
+            } else {
+                setLastOutgoingCallAddress()
+            }
         } else {
-            setLastOutgoingCallAddress()
+            view.let {
+                com.hosco.nextcrm.callcenter.common.DialogUtils.showSnackBar(
+                    it, view.context.resources.getString(
+                        R.string.txt_not_connect
+                    )
+                )
+            }
         }
     }
 

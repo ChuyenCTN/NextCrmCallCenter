@@ -100,7 +100,7 @@ class CustomerFragment : BaseFragment() {
             adapter.setItemClick(object : itemClickListener {
                 override fun onClick(contactResponse: ContactResponse) {
                     contactResponse.mobile.let {
-                        dialpadViewModel.startCall(it)
+                        dialpadViewModel.startCall(rcvCustomer, it)
                     }
                 }
 

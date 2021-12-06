@@ -9,6 +9,8 @@ import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.base.BaseActivity
 import com.hosco.nextcrm.callcenter.extension.addCharacter
 import com.hosco.nextcrm.callcenter.extension.getKeyEvent
+import com.hosco.nextcrm.callcenter.utils.Key
+import com.hosco.nextcrm.callcenter.utils.SharePreferenceUtils
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_dialpad_my.*
 import org.linphone.activities.main.viewmodels.SharedMainViewModel
@@ -86,7 +88,17 @@ class DialpadActivity : BaseActivity() {
             }
         PushDownAnim.setPushDownAnimTo(btncall)
             .setOnClickListener {
-                getPhoneValue()
+                if (SharePreferenceUtils.getInstances().getBoolean(Key.SIP_AVAILABLE) == true) {
+                    getPhoneValue()
+                } else {
+                    btncall.let {
+                        com.hosco.nextcrm.callcenter.common.DialogUtils.showSnackBar(
+                            it, resources.getString(
+                                R.string.txt_not_connect
+                            )
+                        )
+                    }
+                }
             }
         PushDownAnim.setPushDownAnimTo(btnBackspase)
             .setOnClickListener {
@@ -113,7 +125,7 @@ class DialpadActivity : BaseActivity() {
     fun getPhoneValue() {
         if (edValueDialpad.text.toString().trim().isNullOrEmpty())
             return
-        viewModel.startCall(edValueDialpad.text.toString().trim())
+        viewModel.startCall(btncall, edValueDialpad.text.toString().trim())
         edValueDialpad.setText("")
     }
 

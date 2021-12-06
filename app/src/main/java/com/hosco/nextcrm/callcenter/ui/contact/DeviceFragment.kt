@@ -91,7 +91,7 @@ class DeviceFragment : BaseFragment(), EasyPermissions.PermissionCallbacks {
             adapter.setListener(object : ItemClickDevice {
                 override fun onClick(deviceContact: DeviceContact) {
                     deviceContact.phone.let {
-                        it?.let { it1 -> dialpadViewModel.startCall(it1) }
+                        it?.let { it1 -> dialpadViewModel.startCall(rcvDeviceContatc, it1) }
                     }
                 }
             })

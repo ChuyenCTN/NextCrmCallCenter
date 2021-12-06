@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
 import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.base.BaseActivity
+import com.hosco.nextcrm.callcenter.common.DialogUtils
 import com.hosco.nextcrm.callcenter.databinding.ActivitySplashBinding
 import com.hosco.nextcrm.callcenter.ui.main.HomeActivity
 
@@ -59,8 +60,6 @@ class SplashActivity : BaseActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         isFullscreen = true
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -70,6 +69,7 @@ class SplashActivity : BaseActivity() {
         // Upon interacting with UI controls, delay any scheduled hide()
         viewModel.checkAutoLogin(this)
         viewModel.dataLoginResponse().observe(this, {
+            DialogUtils.dismissCrm()
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         })

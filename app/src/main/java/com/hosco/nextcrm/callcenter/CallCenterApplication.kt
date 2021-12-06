@@ -58,12 +58,10 @@ class CallCenterApplication : Application(), LifecycleObserver {
 
     override fun onCreate() {
         super.onCreate()
-        val appName = getString(R.string.app_name)
         ensureCoreExists(applicationContext)
         context = applicationContext
         setupLifecycleListener()
-//        SipHelper.getInstance().onCreate()
-//        SipHelper.getInstance().onLogin()
+
     }
 
 

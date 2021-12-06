@@ -68,6 +68,8 @@
     <string name="txt_no_identify" translatable="false">Không xác định</string>
     <string name="txt_title_filter_ticket" translatable="false">Bộ lọc chi tiết</string>
     <string name="txt_refresh" translatable="false">Làm mới</string>
+    <string name="txt_loading_login" translatable="false">Đang đăng nhập, vui lòng chờ...</string>
+    <string name="txt_not_connect" translatable="false">Chưa kết nối với tổng đài. Vui lòng kiểm tra lại</string>
 
     <string name="menu_note" translatable="false">Phiếu ghi</string>
     <string name="txt_title_all_notes" translatable="false">Tất cả phiếu ghi</string>
@@ -97,7 +99,8 @@
     <string name="txt_loading" translatable="false">Vui lòng chờ...</string>
     <string name="txt_permission_contact" translatable="false">Ứng dụng chưa được cấp quyền đọc danh bạ</string>
     <string name="txt_permission_contact_dialog" translatable="false">Ứng dụng chưa được cấp quyền đọc danh bạ, vui lòng cấp quyền để tiếp tục sử dụng dịch vụ!</string>
-    <string name="txt_permission_contact_click" translatable="false">Nhấn vào đây để cấp quyền và tiếp tục sử dụng dịch vụ!</string>
+<!--    <string name="txt_permission_contact_click" translatable="false">Nhấn vào đây để cấp quyền và tiếp tục sử dụng dịch vụ!</string>-->
+    <string name="txt_permission_contact_click" translatable="false"><font color='#000000'>Nhấn vào đây </font><font color='#8d8d8d'>để cấp quyền và tiếp tục sử dụng dịch vụ!</font></string>
     <string name="txt_opps" translatable="false">Opps!</string>
     <string name="txt_hint_search_contact" translatable="false">Tên hoặc số điện thoại...</string>
     <string name="txt_company" translatable="false">Công ty</string>

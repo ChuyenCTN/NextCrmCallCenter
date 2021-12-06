@@ -9,6 +9,7 @@ import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.coreContext
 import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.corePreferences
 import com.hosco.nextcrm.callcenter.common.Const
 import com.hosco.nextcrm.callcenter.network.remote.auth.ExtentionConfig
+import com.hosco.nextcrm.callcenter.utils.Key.SIP_AVAILABLE
 import org.linphone.core.*
 import java.util.*
 
@@ -78,30 +79,32 @@ object SipHelperCrm {
         if (getInstances().getToken() != null) {
             if (authResponse == null)
                 authResponse = getInstances().getAuthResponse()
-            var accountCreator =
-                coreContext.core.createAccountCreator(corePreferences.xmlRpcServerUrl)
-            accountCreator.language = Locale.getDefault().language
+            if (getInstances().getBoolean(SIP_AVAILABLE) == true) {
+                var accountCreator =
+                    coreContext.core.createAccountCreator(corePreferences.xmlRpcServerUrl)
+                accountCreator.language = Locale.getDefault().language
 
-            val extenConfig: ExtentionConfig = authResponse?.user?.extentionConfig!!
+                val extenConfig: ExtentionConfig = authResponse?.user?.extentionConfig!!
 
-            accountCreator.username = extenConfig.userName
-            accountCreator.password = extenConfig.password
-            accountCreator.domain = extenConfig.domain
-            accountCreator.displayName = extenConfig.displayName
-            accountCreator.transport = TransportType.Udp
+                accountCreator.username = extenConfig.userName
+                accountCreator.password = extenConfig.password
+                accountCreator.domain = extenConfig.domain
+                accountCreator.displayName = extenConfig.displayName
+                accountCreator.transport = TransportType.Udp
 
-            val proxyConfig: ProxyConfig? = accountCreator.createProxyConfig()
+                val proxyConfig: ProxyConfig? = accountCreator.createProxyConfig()
 
-            if (proxyConfig == null) {
+                if (proxyConfig == null) {
 
-                Log.d(
-                    SipHelperCrm::class.java.simpleName,
-                    "Account creator couldn't create proxy config"
-                )
-                return
+                    Log.d(
+                        SipHelperCrm::class.java.simpleName,
+                        "Account creator couldn't create proxy config"
+                    )
+                    return
+                }
+                onCreate()
+                Log.d(SipHelperCrm::class.java.simpleName, "Proxy config created")
             }
-            onCreate()
-            Log.d(SipHelperCrm::class.java.simpleName, "Proxy config created")
         }
     }
 

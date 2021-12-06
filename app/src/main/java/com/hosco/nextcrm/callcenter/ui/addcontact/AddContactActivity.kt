@@ -29,7 +29,7 @@ class AddContactActivity : BaseActivity() {
     override fun setupView(savedInstanceState: Bundle?) {
 
         viewModel.isShowLoading.observe(this, Observer {
-            if (it) DialogUtils.showCrmLoadingDialog(this)
+            if (it) DialogUtils.showCrmLoadingDialog(this,null)
             else DialogUtils.dismissCrm()
         })
 

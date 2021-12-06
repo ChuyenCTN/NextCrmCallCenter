@@ -1,5 +1,6 @@
 package com.hosco.nextcrm.callcenter.ui.addnote
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
@@ -44,6 +45,7 @@ class AddNoteActivity : BaseActivity() {
         setObserveLive(viewModel)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         parent: View?,
         name: String,
@@ -65,7 +67,7 @@ class AddNoteActivity : BaseActivity() {
 
 
         viewModel.isShowLoading.observe(this, Observer {
-            if (it) DialogUtils.showCrmLoadingDialog(this)
+            if (it) DialogUtils.showCrmLoadingDialog(this,null)
             else DialogUtils.dismissCrm()
         })
 
