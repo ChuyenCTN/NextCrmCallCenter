@@ -3,12 +3,10 @@ package com.hosco.nextcrm.callcenter
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.hosco.nextcrm.callcenter.common.extensions.SipHelper
 import org.linphone.core.*
 
 class CallCenterApplication : Application(), LifecycleObserver {

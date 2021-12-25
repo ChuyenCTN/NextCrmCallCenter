@@ -107,6 +107,10 @@ class DomainActivity : BaseActivity() {
         return super.onCreateView(parent, name, context, attrs)
     }
 
+    override fun showError(message: String) {
+        DialogUtils.showSnackBar(btnContinueDomain,message)
+    }
+
 
     fun checkDomain(view: View) {
         if (edDomain.text.toString().isEmpty()) {

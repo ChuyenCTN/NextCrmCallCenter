@@ -1,17 +1,7 @@
 package com.hosco.nextcrm.callcenter.ui.contact
 
-import android.content.Context
-import android.graphics.Rect
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.Toast
 import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -20,15 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.base.BaseFragment
 import com.hosco.nextcrm.callcenter.common.extensions.AllContactList
+import com.hosco.nextcrm.callcenter.model.request.PhoneInfoRequest
 import com.hosco.nextcrm.callcenter.model.response.ContactResponse
 import com.hosco.nextcrm.callcenter.ui.contact.adapter.ContactAdapter
 import com.hosco.nextcrm.callcenter.ui.contact.adapter.itemClickListener
 import com.hosco.nextcrm.callcenter.ui.dialpad.DialpadViewModel
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.fragment_customer.*
-import kotlinx.android.synthetic.main.fragment_internal.*
-import androidx.core.content.ContextCompat.getSystemService
-
+import org.linphone.utils.DialogUtils
 
 class CustomerFragment : BaseFragment() {
 
@@ -72,6 +61,21 @@ class CustomerFragment : BaseFragment() {
                 else adapter.setData(it as ArrayList<ContactResponse>)
             }
         })
+        viewModel.dataPhoneInfoResponse().observe(this, Observer {
+            if (it != null) {
+                dialpadViewModel.startCall(rcvCustomer, it.phone)
+            }
+        })
+
+        viewModel.isShowLoadingPhoneInfo.observe(this, Observer {
+            if (it == true)
+                com.hosco.nextcrm.callcenter.common.DialogUtils.showCrmLoadingDialog(
+                    context,
+                    context?.resources?.getString(R.string.txt_loading_get_info_phone_number)
+                )
+            else
+                com.hosco.nextcrm.callcenter.common.DialogUtils.dismissCrm()
+        })
 
         PushDownAnim.setPushDownAnimTo(imgSearchCustomer).setOnClickListener {
             if (!edSearchCustomer.text.trim().isEmpty()) {
@@ -99,8 +103,13 @@ class CustomerFragment : BaseFragment() {
             adapter = ContactAdapter()
             adapter.setItemClick(object : itemClickListener {
                 override fun onClick(contactResponse: ContactResponse) {
-                    contactResponse.mobile.let {
-                        dialpadViewModel.startCall(rcvCustomer, it)
+                    contactResponse.let {
+                        if (it.mobile != null && !it.mobile.isEmpty()) {
+                            viewModel.getPhoneInfo(
+                                rcvCustomer,
+                                PhoneInfoRequest(contactId = it.mobile, mobile = "")
+                            )
+                        }
                     }
                 }
 

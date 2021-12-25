@@ -48,15 +48,15 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp15" />
 
-                <TextView
-                    android:id="@+id/caller_phone_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfprodisplay_regular"
-                    android:text="@{viewModel.phoneContact}"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp15"
-                    android:visibility="@{viewModel.isShowNumberPhone()?View.VISIBLE:View.GONE}" />
+<!--                <TextView-->
+<!--                    android:id="@+id/caller_phone_number"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/sfprodisplay_regular"-->
+<!--                    android:text="@{viewModel.phoneContact}"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/sp15"-->
+<!--                    android:visibility="@{viewModel.isShowNumberPhone()?View.VISIBLE:View.GONE}" />-->
             </LinearLayout>
 
             <View

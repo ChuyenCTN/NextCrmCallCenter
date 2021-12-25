@@ -3,11 +3,13 @@ package com.hosco.nextcrm.callcenter.network.remote
 import com.hosco.nextcrm.callcenter.model.request.AddNoteRequest
 import com.hosco.nextcrm.callcenter.model.request.ContactRequest
 import com.hosco.nextcrm.callcenter.model.request.CallNoteRequest
+import com.hosco.nextcrm.callcenter.model.request.PhoneInfoRequest
 import com.hosco.nextcrm.callcenter.model.response.*
 import com.hosco.nextcrm.callcenter.network.common.ListResponse
 import com.hosco.nextcrm.callcenter.network.remote.common.DataResponse
 import io.reactivex.Observable
 import retrofit2.http.*
+import java.util.*
 
 
 interface ApiInterface {
@@ -63,4 +65,7 @@ interface ApiInterface {
 
     @POST("api/app-call-center/tickets")
     fun addNote(@Body callNoteRequest: AddNoteRequest): Observable<DataResponse<NoteResponse>>
+
+    @POST("api/app-call-center/receiver-info")
+    fun getPhoneInfo(@Body phoneInfoRequest: PhoneInfoRequest): Observable<DataResponse<PhoneInfoResponse>>
 }

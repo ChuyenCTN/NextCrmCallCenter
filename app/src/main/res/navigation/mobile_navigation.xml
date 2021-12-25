@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_contact"
         android:name="com.hosco.nextcrm.callcenter.ui.contact.ContactFragment"
-        android:label="@string/menu_contact"
+        android:label="@string/txt_customer"
         tools:layout="@layout/fragment_contact" />
 
     <fragment

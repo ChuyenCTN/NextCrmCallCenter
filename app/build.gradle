@@ -59,8 +59,8 @@ android {
         applicationId "com.hosco.nextcrm.callcenter"
         minSdk 24
         targetSdk 31
-        versionCode 8
-        versionName "5.4"
+        versionCode 10
+        versionName "5.8"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -195,8 +195,8 @@ dependencies {
     implementation 'pub.devrel:easypermissions:3.0.0'
 
     //noinspection GradleDynamicVersion
-    implementation 'org.linphone:linphone-sdk-android:5.1+'
-
+//    implementation 'org.linphone:linphone-sdk-android:5.1+'
+    implementation 'org.linphone:linphone-sdk-android:5.1.0-alpha.130+05f1533'
     implementation 'androidx.media:media:1.4.1'
 
 //    linphone

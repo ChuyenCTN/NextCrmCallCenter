@@ -1,10 +1,12 @@
 package com.hosco.nextcrm.callcenter.common
 
-import android.graphics.Movie
-import com.hosco.nextcrm.callcenter.api.ConfigAPI
+import android.util.Log
+import com.hosco.nextcrm.callcenter.model.response.PhoneInfoResponse
 import com.hosco.nextcrm.callcenter.model.response.PriorityResponse
 import com.hosco.nextcrm.callcenter.model.response.StateResponse
 import com.hosco.nextcrm.callcenter.model.response.TypeResponse
+import com.hosco.nextcrm.callcenter.network.remote.auth.CustommerResponse
+import com.hosco.nextcrm.callcenter.network.remote.common.DataResponse
 
 object FlatmapCrm {
     fun addItemDefaultStateList(
@@ -28,5 +30,20 @@ object FlatmapCrm {
             it.add(0, PriorityResponse("All", "All"))
             return it
         }
+    }
+
+    fun getPhoneInfo(data: DataResponse<Any>): PhoneInfoResponse? {
+        data.let {
+            it.meta.let {
+                if (it?.statusCode == 0&&data.meta!=null) {
+                    Log.d("zxcvbnm,.", data.data.toString())
+                    var phoneInfoResponse=data.data as PhoneInfoResponse
+
+                } else {
+                    return null
+                }
+            }
+        }
+        return null
     }
 }

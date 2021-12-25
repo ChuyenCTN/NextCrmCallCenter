@@ -80,7 +80,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/sfprodisplay_regular"
                 android:maxLines="1"
-                android:text="@string/txt_ext"
+                android:text="@string/txt_contact_phone_number"
                 android:textColor="@color/gray2"
                 android:textSize="@dimen/sp14" />
 

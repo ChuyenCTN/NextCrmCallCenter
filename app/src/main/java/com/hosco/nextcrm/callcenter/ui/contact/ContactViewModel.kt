@@ -19,7 +19,16 @@ import android.content.ContentResolver
 import android.content.Context
 import android.database.Cursor
 import android.os.Build
+import android.util.Log
+import android.view.View
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.hosco.nextcrm.callcenter.common.DialogUtils
+import com.hosco.nextcrm.callcenter.model.request.AddNoteRequest
+import com.hosco.nextcrm.callcenter.model.request.PhoneInfoRequest
 import com.hosco.nextcrm.callcenter.model.response.DeviceContact
+import com.hosco.nextcrm.callcenter.model.response.PhoneInfoResponse
+import io.reactivex.disposables.CompositeDisposable
 import kotlin.collections.ArrayList
 
 
@@ -44,6 +53,10 @@ class ContactViewModel : BaseViewModel() {
     private val _dataListCustomer = MutableLiveData<List<ContactResponse>>()
     private val _dataListInternal = MutableLiveData<List<InternalResponse>>()
     private val _dataListDevice = MutableLiveData<List<DeviceContact>>()
+    private val _dataPhoneInfo = MutableLiveData<PhoneInfoResponse>()
+
+    private val _isShowLoadingPhoneInfo = MutableLiveData<Boolean>()
+    val isShowLoadingPhoneInfo: LiveData<Boolean> = _isShowLoadingPhoneInfo
 
     fun getCurrenPageCustomer(): Int? {
         return _curentPageCustomer.value
@@ -113,6 +126,10 @@ class ContactViewModel : BaseViewModel() {
         return _dataListDevice
     }
 
+    fun dataPhoneInfoResponse(): MutableLiveData<PhoneInfoResponse> {
+        return _dataPhoneInfo
+    }
+
     fun getCustomerData() {
         curentPageCustomer.value?.let { currentPage ->
             ApiBuilder.getWebService()
@@ -162,7 +179,8 @@ class ContactViewModel : BaseViewModel() {
 
     fun getInternalData() {
         currentPageInternal.let { currentPage ->
-            ApiBuilder.getWebService().getListInternal(Const.PAGE_LIMIT, currentPage, strSearchInternal)
+            ApiBuilder.getWebService()
+                .getListInternal(Const.PAGE_LIMIT, currentPage, strSearchInternal)
                 ?.flatMap {
                     return@flatMap Observable.just(
                         it
@@ -263,5 +281,43 @@ class ContactViewModel : BaseViewModel() {
             }
         } catch (e: Exception) {
         }
+    }
+
+    fun getPhoneInfo(view: View, phoneInfoRequest: PhoneInfoRequest) {
+        ApiBuilder.getWebService().getPhoneInfo(phoneInfoRequest)
+            ?.flatMap {
+                return@flatMap Observable.just(
+                    it
+                )
+            }
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.doOnSubscribe { _isShowLoadingPhoneInfo.value = true }
+            ?.doFinally { _isShowLoadingPhoneInfo.value = false }?.let {
+                CompositeDisposable().add(
+                    it.subscribe({
+                        _isShowLoadingPhoneInfo.value = false
+                        it.let { dataresponse ->
+                            it.meta.let { it ->
+                                if (it?.statusCode == 0) {
+                                    dataresponse.data.let {
+                                        _dataPhoneInfo.value = it
+                                    }
+                                } else {
+                                    it?.message?.let { it1 ->
+                                        DialogUtils.showSnackBarWithListener(
+                                            view,
+                                            it1, null
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }, {
+                        _isShowLoadingPhoneInfo.value = false
+                        showFailure(it)
+                    })
+                )
+            }
     }
 }

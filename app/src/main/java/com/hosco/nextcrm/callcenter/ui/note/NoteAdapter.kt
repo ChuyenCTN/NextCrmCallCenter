@@ -71,8 +71,9 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 //}
 
 @BindingAdapter("textFirst")
-fun loadText(view: TextView, text: String?) {
-    if (text != null && !text.isEmpty()) {
+fun loadText(view: TextView, inputValue: String?) {
+    if (inputValue != null && !inputValue.isEmpty()) {
+        var text = inputValue.filter { it.isLetterOrDigit() }
         if (text.length >= 2) {
             if (text.contains(" "))
                 view.text = text.substring(0, 1).plus(text.split(" ")[1].substring(0, 1))

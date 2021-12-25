@@ -115,9 +115,9 @@ interface itemClickListener {
 fun setPhoneNumberText(textView: TextView, phoneNumber: String?) {
     if (phoneNumber.isNullOrEmpty()) {
         textView.text =
-            "${textView.context.getString(R.string.txt_ext)}: ${textView.context.getString(R.string.txt_no_identify)}"
+            "${textView.context.getString(R.string.txt_contact_phone_number)}: ${textView.context.getString(R.string.txt_no_identify)}"
     } else {
         textView.text =
-            "${textView.context.getString(R.string.txt_ext)}: ${phoneNumber}"
+            "${textView.context.getString(R.string.txt_contact_phone_number)}: ${phoneNumber}"
     }
 }

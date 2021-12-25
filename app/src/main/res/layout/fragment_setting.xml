@@ -249,7 +249,7 @@
                         android:gravity="right"
                         android:maxLines="1"
                         android:paddingHorizontal="@dimen/dimen8"
-                        android:text="@{settingViewModel.phoneNumber}"
+                        android:text="@{settingViewModel.ext}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp16" />
                 </LinearLayout>

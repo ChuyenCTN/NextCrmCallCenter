@@ -1,6 +1,5 @@
 package com.hosco.nextcrm.callcenter.ui.main
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -13,14 +12,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
-import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.coreContext
-import com.hosco.nextcrm.callcenter.CallCenterApplication.Companion.corePreferences
 import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.base.BaseActivity
-import com.hosco.nextcrm.callcenter.common.extensions.SipHelper
 import com.hosco.nextcrm.callcenter.common.extensions.SipHelperCrm
-import com.hosco.nextcrm.callcenter.model.response.NoteResponse
-import com.hosco.nextcrm.callcenter.network.remote.auth.ExtentionConfig
 import com.hosco.nextcrm.callcenter.ui.contact.ContactFragment
 import com.hosco.nextcrm.callcenter.ui.dialpad.DialpadActivity
 import com.hosco.nextcrm.callcenter.ui.history.HistoryFragment
@@ -31,10 +25,6 @@ import com.hosco.nextcrm.callcenter.utils.SharePreferenceUtils
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_setting.*
-import org.linphone.core.AccountCreator
-import org.linphone.core.ProxyConfig
-import org.linphone.core.TransportType
-import org.linphone.core.tools.Log
 import java.util.*
 
 class HomeActivity : BaseActivity() {

@@ -2,22 +2,18 @@ package com.hosco.nextcrm.callcenter.ui.login
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.afollestad.materialdialogs.MaterialDialog
 import com.hosco.nextcrm.callcenter.R
 import com.hosco.nextcrm.callcenter.base.BaseViewModel
 import com.hosco.nextcrm.callcenter.common.Const
 import com.hosco.nextcrm.callcenter.common.DialogUtils
-import com.hosco.nextcrm.callcenter.common.extensions.SipHelperCrm
 import com.hosco.nextcrm.callcenter.network.remote.auth.*
 import com.hosco.nextcrm.callcenter.utils.Key
 import com.hosco.nextcrm.callcenter.utils.SharePreferenceUtils
@@ -101,7 +97,7 @@ class LoginViewModel : BaseViewModel() {
         AuthBuilder.getAuthService().checkExistCustomer(tenantCode)
             ?.flatMap {
                 return@flatMap Observable.just(
-                    it
+         it
                 )
             }
             ?.subscribeOn(Schedulers.io())
@@ -119,8 +115,8 @@ class LoginViewModel : BaseViewModel() {
                                             .saveCustomerResponse(_dataCustomerResponse.value)
                                     }
                                 } else {
-                                    _errorMessage.value = meta?.message
-                                    meta?.message?.let { it1 -> showError(it1) }
+                                    _errorMessage.postValue(  meta?.message)
+//                                    meta?.message?.let { it1 -> showError(it1) }
                                 }
                             }
 
@@ -194,64 +190,64 @@ class LoginViewModel : BaseViewModel() {
         }
     }
 
-    fun loginLinphone(authSipRequest: AuthSipRequest, listener: CoreListenerStub) {
-        authSipRequest.let { request ->
-            var typeTransport = TransportType.Udp
-            if (request.transportType.equals(Const.TYPE_UDP_SIP))
-                typeTransport = TransportType.Udp
-
-            val authInfo = Factory.instance().createAuthInfo(
-                authSipRequest.userName,
-                null,
-                authSipRequest.passWord,
-                null,
-                null,
-                authSipRequest.domain,
-                null
-            )
-
-            // Account object replaces deprecated ProxyConfig object
-            // Account object is configured through an AccountParams object that we can obtain from the Core
-            val accountParams = core.createAccountParams()
-
-            // A SIP account is identified by an identity address that we can construct from the username and domain
-            val identity = Factory.instance()
-                .createAddress("sip:${authSipRequest.userName}@${authSipRequest.domain}")
-            accountParams.identityAddress = identity
-
-            // We also need to configure where the proxy server is located
-            val address = Factory.instance().createAddress("sip:${authSipRequest.domain}")
-            // We use the Address object to easily set the transport protocol
-            address?.transport = typeTransport
-            accountParams.serverAddress = address
-            // And we ensure the account will start the registration process
-            accountParams.registerEnabled = true
-
-            // Now that our AccountParams is configured, we can create the Account object
-            val account = core.createAccount(accountParams)
-
-            // Now let's add our objects to the Core
-            core.addAuthInfo(authInfo)
-            core.addAccount(account)
-
-            // Also set the newly added account as default
-            core.defaultAccount = account
-
-            // Allow account to be removed
-
-            // To be notified of the connection status of our account, we need to add the listener to the Core
-            core.addListener(listener)
-            // We can also register a callback on the Account object
-            account.addListener { _, state, message ->
-                // There is a Log helper in org.linphone.core.tools package
-                Log.i("[Account] Registration state changed: $state, $message")
-            }
-
-            // Finally we need the Core to be started for the registration to happen (it could have been started before)
-            core.start()
-
-        }
-    }
+//    fun loginLinphone(authSipRequest: AuthSipRequest, listener: CoreListenerStub) {
+//        authSipRequest.let { request ->
+//            var typeTransport = TransportType.Udp
+//            if (request.transportType.equals(Const.TYPE_UDP_SIP))
+//                typeTransport = TransportType.Udp
+//
+//            val authInfo = Factory.instance().createAuthInfo(
+//                authSipRequest.userName,
+//                null,
+//                authSipRequest.passWord,
+//                null,
+//                null,
+//                authSipRequest.domain,
+//                null
+//            )
+//
+//            // Account object replaces deprecated ProxyConfig object
+//            // Account object is configured through an AccountParams object that we can obtain from the Core
+//            val accountParams = core.createAccountParams()
+//
+//            // A SIP account is identified by an identity address that we can construct from the username and domain
+//            val identity = Factory.instance()
+//                .createAddress("sip:${authSipRequest.userName}@${authSipRequest.domain}")
+//            accountParams.identityAddress = identity
+//
+//            // We also need to configure where the proxy server is located
+//            val address = Factory.instance().createAddress("sip:${authSipRequest.domain}")
+//            // We use the Address object to easily set the transport protocol
+//            address?.transport = typeTransport
+//            accountParams.serverAddress = address
+//            // And we ensure the account will start the registration process
+//            accountParams.registerEnabled() = true
+//
+//            // Now that our AccountParams is configured, we can create the Account object
+//            val account = core.createAccount(accountParams)
+//
+//            // Now let's add our objects to the Core
+//            core.addAuthInfo(authInfo)
+//            core.addAccount(account)
+//
+//            // Also set the newly added account as default
+//            core.defaultAccount = account
+//
+//            // Allow account to be removed
+//
+//            // To be notified of the connection status of our account, we need to add the listener to the Core
+//            core.addListener(listener)
+//            // We can also register a callback on the Account object
+//            account.addListener { _, state, message ->
+//                // There is a Log helper in org.linphone.core.tools package
+//                Log.i("[Account] Registration state changed: $state, $message")
+//            }
+//
+//            // Finally we need the Core to be started for the registration to happen (it could have been started before)
+//            core.start()
+//
+//        }
+//    }
 
 }
 

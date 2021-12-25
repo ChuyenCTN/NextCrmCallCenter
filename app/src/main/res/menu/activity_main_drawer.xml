@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_contact"
-            android:title="@string/menu_contact" />
+            android:title="@string/txt_customer" />
         <item
             android:id="@+id/nav_history"
             android:icon="@drawable/icon_history"

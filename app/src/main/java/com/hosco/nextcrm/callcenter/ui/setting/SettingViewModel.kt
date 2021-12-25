@@ -29,6 +29,9 @@ class SettingViewModel : BaseViewModel() {
     private val _domain = MutableLiveData<String>()
     val domain: LiveData<String> = _domain
 
+    private val _ext = MutableLiveData<String>()
+    val ext: LiveData<String> = _ext
+
     private val _extension = MutableLiveData<String>()
     val extension: LiveData<String> = _extension
 
@@ -50,7 +53,7 @@ class SettingViewModel : BaseViewModel() {
     fun fillData(context: Context) {
         _fullName.value = getFullName1()
         _tel.value = getTelUser()
-        _domain.value = getDomainUser()
+        _ext.value = getExtNumber()
         _extension.value = getExtensionUser()
         _email.value = getEmailUser()
         _phoneNumbers.value = getPhoneNumber(context)
@@ -102,6 +105,16 @@ class SettingViewModel : BaseViewModel() {
         }
     }
 
+    fun getExtNumber(): String {
+        authResponse.let {
+            it.user.let {
+                it.extentionConfig.let {
+                    it.displayName.let { return it }
+                }
+            }
+        }
+    }
+
     fun getExtensionUser(): String {
         authResponse.let {
             it.user.let {
@@ -137,10 +150,11 @@ class SettingViewModel : BaseViewModel() {
 }
 
 @BindingAdapter("textBorder")
-fun loadTextBoder(view: TextView, text: String?) {
-    text?.let {
-        if (text.isNotEmpty())
-            if (text.length >= 2) {
+fun loadTextBoder(view: TextView, inputValue: String?) {
+    inputValue?.let {
+        if (inputValue.isNotEmpty()) {
+            var text = inputValue.filter { it.isLetterOrDigit() }
+            if (inputValue.length >= 2) {
                 if (text.contains(" "))
                     view.text = text.substring(0, 1).plus(text.split(" ")[1].substring(0, 1))
                 else
@@ -149,6 +163,7 @@ fun loadTextBoder(view: TextView, text: String?) {
             } else {
                 view.text = text.substring(0, 1)
             }
+        }
         view.background = GenColorBackground.getBackgroundWithBorder()
     }
 }

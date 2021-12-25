@@ -144,7 +144,6 @@ class DeviceFragment : BaseFragment(), EasyPermissions.PermissionCallbacks {
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        Log.d("zxcvbnm", "onPermissionsDenied")
         showNoData(true, true)
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             AppSettingsDialog.Builder(this).build().show()

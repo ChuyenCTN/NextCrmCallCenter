@@ -34,8 +34,6 @@ open class GenericContactData(private val sipAddress: Address) : ContactDataInte
         securityLevel.value = ChatRoomSecurityLevel.ClearText
         coreContext.contactsManager.addListener(contactsUpdatedListener)
         contactLookup()
-        Log.d("zxcvbnm,","${contact.value?.fullName}")
-        Log.d("zxcvbnm,","${contact.value?.phoneNumbers}")
     }
 
     open fun destroy() {
